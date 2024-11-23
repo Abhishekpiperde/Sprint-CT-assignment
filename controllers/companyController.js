@@ -15,6 +15,12 @@ exports.deleteCompany = async (req, res) => {
 
 exports.getUsersByCompany = async (req, res) => {
   try {
+    const { companyId } = req.params;
+    const company = await Company.findByPk(companyId, {
+      include: { model: User, through: { attributes: [] } },
+    });
+    if (company) res.status(200).json(company.Users);
+    else res.status(404).json({ error: "Company not found." });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

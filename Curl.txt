@@ -1,0 +1,55 @@
+1. Create a company curl 
+
+curl --request POST \
+  --url http://localhost:4000/api/companies \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/10.1.1' \
+  --data '{
+	"name":"Spring Technologies",
+	"city":"Pune"
+}'
+
+
+2. Create a User
+
+curl --request POST \
+  --url http://localhost:4000/api/users \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/10.1.1' \
+  --data '{
+  "name": "Sahil Jain",
+  "email": "sahil@gmail.com",
+  "phone": "1234567891"
+}
+'
+
+3. Get all user associate with a company 
+
+curl --request GET \
+  --url http://localhost:4000/api/companies/5/users \
+  --header 'User-Agent: insomnia/10.1.1'
+
+4. Allocate User to a company
+
+curl --request POST \
+  --url http://localhost:4000/api/users/allocate \
+  --header 'Content-Type: application/json' \
+  --header 'User-Agent: insomnia/10.1.1' \
+  --data '{
+  "userId": 5,
+  "companyIds": [5,6]
+}
+'
+
+5. List all the users
+
+curl --request GET \
+  --url http://localhost:4000/api/users \
+  --header 'User-Agent: insomnia/10.1.1'
+
+
+6. Delete a company
+
+curl --request DELETE \
+  --url http://localhost:4000/api/companies/1 \
+  --header 'User-Agent: insomnia/10.1.1'
