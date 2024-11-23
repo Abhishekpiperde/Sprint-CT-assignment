@@ -1,0 +1,24 @@
+CREATE DATABASE IF NOT EXISTS company_user_db;
+
+USE company_user_db;
+
+CREATE TABLE IF NOT EXISTS Companies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    phone VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS UserCompanies (
+    userId INT,
+    companyId INT,
+    PRIMARY KEY (userId, companyId),
+    FOREIGN KEY (userId) REFERENCES Users(id) ON DELETE CASCADE,
+    FOREIGN KEY (companyId) REFERENCES Companies(id) ON DELETE CASCADE
+);
